@@ -15,7 +15,11 @@ MyNetwork::MyNetwork(QObject *parent) : QObject(parent)
 
 void MyNetwork::sendUDP(QString msg)
 {
-
+    if(enable_debug_udp)
+        qDebug() << "sendUDP: " << msg ;
+    QByteArray datagram = msg.toLatin1() ;
+    m_udpSocket->writeDatagram(datagram.data(), datagram.size(),
+                             QHostAddress::Broadcast, udpPort);
 }
 
 void MyNetwork::readyReadUDP()
@@ -27,7 +31,9 @@ void MyNetwork::readyReadUDP()
         m_udpSocket->readDatagram(datagram.data(), datagram.size());
 
         QString data = datagram;
-        qDebug() << "void MyNetwork::readyReadUDP(): "<< data ;
+        if(enable_debug_udp)
+            qDebug() << "readyReadUDP: " << data ;
+
         if(data.contains("<temperature>"))
         {
             data.replace("<temperature>","");

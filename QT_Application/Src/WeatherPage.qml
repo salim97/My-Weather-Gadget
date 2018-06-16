@@ -5,18 +5,29 @@ import QtQuick.Controls 2.2
 Page{
     id: today
 
+    function sp(value) {
+      return value
+    }
+
     property int temperature: myNetwork.temperature
     property string temperature_color: "#FF5E3A"
 
     property int humidity: myNetwork.humidity
     property string humidity_color: "#1AD6FD"
 
+    property string description: "..."
     property int currentIndex: 0
     onCurrentIndexChanged: {
         if(currentIndex == 0)
+        {
+            today.description = "Temperature"
             mainText.text = temperature.toFixed(0)+" C"
+        }
         else
+        {
+            today.description = "Humidity"
             mainText.text = humidity.toFixed(0)+" %"
+        }
 
     }
 
@@ -108,49 +119,35 @@ Page{
 
         Component.onCompleted: text = temperature
 
-        font.pixelSize: 140//sp(140)
+        font.pixelSize: sp(140)
         anchors.horizontalCenter: parent.horizontalCenter
+        Behavior on text {
+          SequentialAnimation {
+            NumberAnimation { target: mainText; property: "opacity"; to: 0 }
+            PropertyAction { }
+            NumberAnimation { target: mainText; property: "opacity"; to: 1 }
+          }
+        }
 
-//        onTemperatureChanged: {
-//          var currentTemp = parseInt(tempText.text)
-//          textTimer.restart()
-//        }
 
-//        Timer {
-//          id: textTimer
-//          interval: 40
-
-//          onTriggered: {
-//            // Check if we have to change the text
-//            var currentTemp = parseInt(tempText.text)
-
-//            if (tempText.temperature > currentTemp) {
-//              tempText.text = ++currentTemp
-//              restart()
-//            }
-//            else if (tempText.temperature < currentTemp) {
-//              tempText.text = --currentTemp
-//              restart()
-//            }
-//          }
-//        }
       }
 
-      // Description
-//      Text {
-//        id: descText
-//        text: today.description
-//        font.pixelSize: sp(28)
-//        anchors.horizontalCenter: parent.horizontalCenter
+       //Description
+      Text {
+        id: descText
+        text: today.description
+        font.pixelSize: sp(28)
+        anchors.horizontalCenter: parent.horizontalCenter
 
-//        Behavior on text {
-//          SequentialAnimation {
-//            NumberAnimation { target: descText; property: "opacity"; to: 0 }
-//            PropertyAction { }
-//            NumberAnimation { target: descText; property: "opacity"; to: 1 }
-//          }
-//        }
-//      }
+        Behavior on text {
+          SequentialAnimation {
+            NumberAnimation { target: descText; property: "opacity"; to: 0 }
+            PropertyAction { }
+            NumberAnimation { target: descText; property: "opacity"; to: 1 }
+          }
+        }
+
+      }
 
     }
 

@@ -3,8 +3,9 @@
 
 #include <QObject>
 #include <QUdpSocket>
-#include "MyPropertyHelper.h"
+#include "mypropertyhelper.h"
 
+#define enable_debug_udp true
 
 class MyNetwork : public QObject
 {
