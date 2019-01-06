@@ -24,4 +24,7 @@ and then download source code and build it for any platform you are using
 
 Doc : https://github.com/salim97/My-Weather-Gadget/wiki
 
+# Copyright © 2018-2019
+[Benabadji Mohammed Salim](https://github.com/salim97)
 
+[Houari Amine ](https://github.com/AmineHouari98)
