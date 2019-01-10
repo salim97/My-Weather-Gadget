@@ -22,9 +22,12 @@ and then download source code and build it for any platform you are using
 
 [App Source Code](https://github.com/salim97/My-Weather-Gadget/tree/master/QT_Application/Src)
 
-Doc : https://github.com/salim97/My-Weather-Gadget/wiki
+# Wiki
+
+url : https://github.com/salim97/My-Weather-Gadget/wiki
 
 # Copyright © 2018-2019
+
 [Benabadji Mohammed Salim](https://github.com/salim97)
 
 [Houari Amine ](https://github.com/AmineHouari98)
